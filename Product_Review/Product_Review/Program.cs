@@ -11,9 +11,10 @@ namespace Product_Review
         static void Main(string[] args)
         {
             Console.WriteLine("Product Review Management!");
-
+            //creating list
             List<ProductReview> listProductReview = new List<ProductReview>()
             {
+                //adding to the list
                 new ProductReview(){ProductID=1,UserID=1,Rating=5,Review="Super",isLike=true},
                 new ProductReview(){ProductID=2,UserID=3,Rating=4,Review="Great",isLike=true},
                 new ProductReview(){ProductID=3,UserID=5,Rating=3,Review="Good",isLike=true},
@@ -40,6 +41,7 @@ namespace Product_Review
                 new ProductReview(){ProductID=24,UserID=45,Rating=2,Review="Okay",isLike=true},
                 new ProductReview(){ProductID=25,UserID=47,Rating=1,Review="Poor",isLike=true},
             };
+            //retriewing data from list
             foreach (var list in listProductReview)
             {
                 Console.WriteLine("ProductID: " + list.ProductID + " UserID: " + list.UserID + " Rating: " + list.Rating + " Review: " + list.Review + " isLike: " + list.isLike);
@@ -47,6 +49,8 @@ namespace Product_Review
             Console.WriteLine();
             Management manage = new Management();
             manage.Top3Records(listProductReview);
+            Console.WriteLine();
+            manage.RecordWithCondition(listProductReview);
             Console.ReadLine();
         }
     }
