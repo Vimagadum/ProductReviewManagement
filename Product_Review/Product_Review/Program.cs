@@ -53,7 +53,8 @@ namespace Product_Review
             //manage.RecordWithCondition(listProductReview);
             //manage.RetrieveCountOfReview(listProductReview);
             //manage.RetrieveProductIdAndReview(listProductReview);
-            manage.SkipTop5records(listProductReview);
+            //manage.SkipTop5records(listProductReview);
+            manage.CreateDataTable();
             Console.ReadLine();
         }
     }
