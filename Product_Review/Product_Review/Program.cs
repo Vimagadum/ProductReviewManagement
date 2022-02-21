@@ -48,9 +48,10 @@ namespace Product_Review
             }
             Console.WriteLine();
             Management manage = new Management();
-            manage.Top3Records(listProductReview);
-            Console.WriteLine();
-            manage.RecordWithCondition(listProductReview);
+            //manage.Top3Records(listProductReview);
+            
+            //manage.RecordWithCondition(listProductReview);
+            manage.RetrieveCountOfReview(listProductReview);
             Console.ReadLine();
         }
     }
