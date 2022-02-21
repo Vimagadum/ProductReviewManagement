@@ -51,7 +51,8 @@ namespace Product_Review
             //manage.Top3Records(listProductReview);
             
             //manage.RecordWithCondition(listProductReview);
-            manage.RetrieveCountOfReview(listProductReview);
+            //manage.RetrieveCountOfReview(listProductReview);
+            manage.RetrieveProductIdAndReview(listProductReview);
             Console.ReadLine();
         }
     }
