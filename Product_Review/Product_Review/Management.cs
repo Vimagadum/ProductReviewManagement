@@ -73,9 +73,9 @@ namespace Product_Review
         public static DataTable table = new DataTable();
         public void CreateDataTable()
         {
-            table.Columns.Add("ProductID");
-            table.Columns.Add("UserID");
-            table.Columns.Add("Ratings");
+            table.Columns.Add("ProductID",typeof(int));
+            table.Columns.Add("UserID",typeof(int));
+            table.Columns.Add("Ratings",typeof(double));
             table.Columns.Add("Review");
             table.Columns.Add("IsLike",typeof(bool));
             //table.Columns.Add()
@@ -92,16 +92,23 @@ namespace Product_Review
             table.Rows.Add(11, 11, 3, "Nice", false);
             table.Rows.Add(14, 14, 10, "Good", true);
             table.Rows.Add(23, 23, 4, "Good", true);
+            table.Rows.Add(20, 10, 2, "Bad", false);
+            table.Rows.Add(8, 10, 1, "Nice", false);
+            table.Rows.Add(20, 10, 9, "Good", true);
+            table.Rows.Add(21, 10, 3, "Nice", false);
+            table.Rows.Add(11, 10, 3, "Nice", false);
+            table.Rows.Add(14, 10, 10, "Good", true);
+            table.Rows.Add(23, 10, 4, "Good", true);
 
             var stringTable = from product in table.AsEnumerable() select product;
 
             foreach (var data in stringTable)
             {
-                Console.WriteLine("ProductID: " + data.Field<string>("ProductID") + ", UserID: " + data.Field<string>("UserID") + ", Ratings: " + data.Field<string>("Ratings") + " , Review: " + data.Field<string>("Review") + " , IsLike: " + data.Field<bool>("IsLike"));
+                Console.WriteLine("ProductID: " + data.Field<int>("ProductID") + ", UserID: " + data.Field<int>("UserID") + ", Ratings: " + data.Field<double>("Ratings") + " , Review: " + data.Field<string>("Review") + " , IsLike: " + data.Field<bool>("IsLike"));
             }
 
         }
-        //retrive data who's islike is true
+        //retrieve data who's islike is true
         public void GetAllLikedReviews()
         {
             var stringTable = (from product in table.AsEnumerable()
@@ -114,6 +121,7 @@ namespace Product_Review
                 Console.WriteLine("ProductID: " + lst.Field<string>("ProductID") + ", UserID: " + lst.Field<string>("UserID") + ", Ratings: " + lst.Field<string>("Ratings") + " , Review: " + lst.Field<string>("Review") + " , IsLike: " + lst.Field<bool>("IsLike"));
             }
         }
+        //average rating
         public void AverageRatingOfEachProductId(List<ProductReview> listProductReview)
         {
             var data = from productReviews in listProductReview
@@ -140,6 +148,18 @@ namespace Product_Review
             foreach (var list in data)
             {
                 Console.WriteLine("ProductID: " + list.ProductID + " UserID: " + list.UserID + " Rating: " + list.Rating + " Review: " + list.Review + " isLike: " + list.isLike);
+            }
+        }
+        //retrieve records with whos UserIo is 10
+        public void RetrieveRecordsWithUserId10(int userid,List<ProductReview> listProductReview)
+        {
+            var Table = (from product in table.AsEnumerable()
+                               where (product.Field<int>("UserID") == userid)
+                               select product).ToList();
+            Console.WriteLine("\n");
+            foreach (var lst in Table)
+            {
+                Console.WriteLine("ProductID: " + lst.Field<int>("ProductID") + ", UserID: " + lst.Field<int>("UserID") + ", Ratings: " + lst.Field<double>("Ratings") + " , Review: " + lst.Field<string>("Review") + " , IsLike: " + lst.Field<bool>("IsLike"));
             }
         }
     }
