@@ -42,10 +42,10 @@ namespace Product_Review
                 new ProductReview(){ProductID=25,UserID=47,Rating=1,Review="Poor",isLike=true},
             };
             //retriewing data from list
-            foreach (var list in listProductReview)
-            {
-                Console.WriteLine("ProductID: " + list.ProductID + " UserID: " + list.UserID + " Rating: " + list.Rating + " Review: " + list.Review + " isLike: " + list.isLike);
-            }
+            //foreach (var list in listProductReview)
+            //{
+            //    Console.WriteLine("ProductID: " + list.ProductID + " UserID: " + list.UserID + " Rating: " + list.Rating + " Review: " + list.Review + " isLike: " + list.isLike);
+            //}
             Console.WriteLine();
             Management manage = new Management();
             //manage.Top3Records(listProductReview);
@@ -55,6 +55,7 @@ namespace Product_Review
             //manage.RetrieveProductIdAndReview(listProductReview);
             //manage.SkipTop5records(listProductReview);
             manage.CreateDataTable();
+            manage.GetAllLikedReviews();
             Console.ReadLine();
         }
     }

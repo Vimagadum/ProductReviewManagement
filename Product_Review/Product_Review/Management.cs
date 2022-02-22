@@ -77,8 +77,8 @@ namespace Product_Review
             table.Columns.Add("UserID");
             table.Columns.Add("Ratings");
             table.Columns.Add("Review");
-            table.Columns.Add("IsLike");
-
+            table.Columns.Add("IsLike",typeof(bool));
+            //table.Columns.Add()
             table.Rows.Add(1, 1, 8, "Good", true);
             table.Rows.Add(2, 2, 7, "Good", true);
             table.Rows.Add(3, 3, 5, "Good", true);
@@ -97,9 +97,22 @@ namespace Product_Review
 
             foreach (var data in stringTable)
             {
-                Console.WriteLine("ProductID: " + data.Field<string>("ProductID") + ", UserID: " + data.Field<string>("UserID") + ", Ratings: " + data.Field<string>("Ratings") + " , Review: " + data.Field<string>("Review") + " , IsLike: " + data.Field<string>("IsLike"));
+                Console.WriteLine("ProductID: " + data.Field<string>("ProductID") + ", UserID: " + data.Field<string>("UserID") + ", Ratings: " + data.Field<string>("Ratings") + " , Review: " + data.Field<string>("Review") + " , IsLike: " + data.Field<bool>("IsLike"));
             }
-        
+
+        }
+        //retrive data who's islike is true
+        public void GetAllLikedReviews()
+        {
+            var stringTable = (from product in table.AsEnumerable()
+                               where (product.Field<bool>("IsLike") == true)
+                               select product).ToList();
+
+            Console.WriteLine("\n");
+            foreach (var lst in stringTable)
+            {
+                Console.WriteLine("ProductID: " + lst.Field<string>("ProductID") + ", UserID: " + lst.Field<string>("UserID") + ", Ratings: " + lst.Field<string>("Ratings") + " , Review: " + lst.Field<string>("Review") + " , IsLike: " + lst.Field<bool>("IsLike"));
+            }
         }
     }
 }
