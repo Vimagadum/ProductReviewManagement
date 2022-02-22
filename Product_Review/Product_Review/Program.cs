@@ -55,7 +55,8 @@ namespace Product_Review
             //manage.RetrieveProductIdAndReview(listProductReview);
             //manage.SkipTop5records(listProductReview);
             manage.CreateDataTable();
-            manage.GetAllLikedReviews();
+            //manage.GetAllLikedReviews();
+            manage.AverageRatingOfEachProductId(listProductReview);
             Console.ReadLine();
         }
     }

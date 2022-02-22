@@ -114,5 +114,21 @@ namespace Product_Review
                 Console.WriteLine("ProductID: " + lst.Field<string>("ProductID") + ", UserID: " + lst.Field<string>("UserID") + ", Ratings: " + lst.Field<string>("Ratings") + " , Review: " + lst.Field<string>("Review") + " , IsLike: " + lst.Field<bool>("IsLike"));
             }
         }
+        public void AverageRatingOfEachProductId(List<ProductReview> listProductReview)
+        {
+            var data = from productReviews in listProductReview
+                       group productReviews by productReviews.ProductID into s
+                       select new
+                       {
+                           ProductID = s.Key,
+                           AverageRating = s.Average(x => x.Rating)
+                       };
+            Console.WriteLine("\n");
+            Console.WriteLine("\nProductID AverageRating");
+            foreach (var list in data)
+            {
+                Console.WriteLine(list.ProductID + " ----------- " + list.AverageRating);
+            }
+        }
     }
 }
